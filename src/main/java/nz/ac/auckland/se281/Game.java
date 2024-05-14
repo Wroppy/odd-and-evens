@@ -45,9 +45,11 @@ public class Game {
   public int getFinger() {
     MessageCli.ASK_INPUT.printMessage();
     String finger = Utils.scanner.nextLine();
-    while (!Utils.isInteger(finger)) {
+    while (!Utils.isInteger(finger)
+        || !(Integer.parseInt(finger) >= 0 && Integer.parseInt(finger) <= 5)) {
+
+      // Asks prompt again if the message is invalid
       MessageCli.INVALID_INPUT.printMessage();
-      
       MessageCli.ASK_INPUT.printMessage();
       finger = Utils.scanner.nextLine();
     }
