@@ -1,8 +1,8 @@
-package nz.ac.auckland.se281.AiBots;
+package nz.ac.auckland.se281.bots;
 
 import nz.ac.auckland.se281.Main.Choice;
-import nz.ac.auckland.se281.Strategies.RandomStrategy;
-import nz.ac.auckland.se281.Strategies.StrategyProcessor;
+import nz.ac.auckland.se281.strategies.RandomStrategy;
+import nz.ac.auckland.se281.strategies.StrategyProcessor;
 
 /**
  * The bot called for an easy difficulty game.

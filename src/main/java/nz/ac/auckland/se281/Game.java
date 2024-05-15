@@ -1,7 +1,7 @@
 package nz.ac.auckland.se281;
 
-import nz.ac.auckland.se281.AiBots.AiPlayer;
-import nz.ac.auckland.se281.AiBots.BotFactory;
+import nz.ac.auckland.se281.bots.AiPlayer;
+import nz.ac.auckland.se281.bots.BotFactory;
 import nz.ac.auckland.se281.Main.Choice;
 import nz.ac.auckland.se281.Main.Difficulty;
 

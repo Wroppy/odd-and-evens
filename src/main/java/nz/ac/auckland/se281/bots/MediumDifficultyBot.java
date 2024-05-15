@@ -1,10 +1,10 @@
-package nz.ac.auckland.se281.AiBots;
+package nz.ac.auckland.se281.bots;
 
 import nz.ac.auckland.se281.Main.Choice;
-import nz.ac.auckland.se281.Strategies.RandomStrategy;
-import nz.ac.auckland.se281.Strategies.Strategy;
-import nz.ac.auckland.se281.Strategies.StrategyProcessor;
-import nz.ac.auckland.se281.Strategies.TopStrategy;
+import nz.ac.auckland.se281.strategies.RandomStrategy;
+import nz.ac.auckland.se281.strategies.Strategy;
+import nz.ac.auckland.se281.strategies.StrategyProcessor;
+import nz.ac.auckland.se281.strategies.TopStrategy;
 
 /**
  * The bot used for a medium difficulty game. Uses a random strategy for the first 3 rounds then

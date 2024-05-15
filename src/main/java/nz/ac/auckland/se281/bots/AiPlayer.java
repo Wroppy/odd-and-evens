@@ -1,4 +1,4 @@
-package nz.ac.auckland.se281.AiBots;
+package nz.ac.auckland.se281.bots;
 
 import nz.ac.auckland.se281.GamePlayer;
 import nz.ac.auckland.se281.Main.Choice;
