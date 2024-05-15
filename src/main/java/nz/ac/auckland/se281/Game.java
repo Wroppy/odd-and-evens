@@ -1,5 +1,7 @@
 package nz.ac.auckland.se281;
 
+import nz.ac.auckland.se281.AIBots.AIBot;
+import nz.ac.auckland.se281.AIBots.BotFactory;
 import nz.ac.auckland.se281.Main.Choice;
 import nz.ac.auckland.se281.Main.Difficulty;
 
@@ -7,6 +9,7 @@ import nz.ac.auckland.se281.Main.Difficulty;
 public class Game {
   private int round = 1;
   private UserPlayer player;
+  private AIBot bot;
 
   /**
    * Given the difficulty, odd or even, and the players name, resets and starts a new game.
@@ -21,6 +24,8 @@ public class Game {
     this.player = new UserPlayer(playerName);
     MessageCli.WELCOME_PLAYER.printMessage(this.player.toString());
     this.round = 1;
+
+    this.bot = BotFactory.createBot(difficulty);
   }
 
   /**
@@ -30,31 +35,19 @@ public class Game {
   public void play() {
     MessageCli.START_ROUND.printMessage(String.valueOf(this.round));
 
-    int finger = this.getFinger();
-    MessageCli.PRINT_INFO_HAND.printMessage(this.player.toString(), String.valueOf(finger));
+    // Gets the user players finger and prints the hand
+    int finger = this.player.getFinger();
+    this.printHand(this.player, finger);
+
+    // Gets the specified bot finger
+    int botFinger = this.bot.getFinger();
+    this.printHand(this.bot, botFinger);
 
     this.incrementRound();
   }
 
-  /**
-   * When called, asks the user for a number that is between 0 and 5 (inclusive) Ensures that the
-   * input is valid and keeps asking until the condition is satisfied.
-   *
-   * @return the user's inputted number from 0 and 5
-   */
-  public int getFinger() {
-    MessageCli.ASK_INPUT.printMessage();
-    String finger = Utils.scanner.nextLine();
-    while (!Utils.isInteger(finger)
-        || !(Integer.parseInt(finger) >= 0 && Integer.parseInt(finger) <= 5)) {
-
-      // Asks prompt again if the message is invalid
-      MessageCli.INVALID_INPUT.printMessage();
-      MessageCli.ASK_INPUT.printMessage();
-      finger = Utils.scanner.nextLine();
-    }
-
-    return Integer.parseInt(finger);
+  public void printHand(GamePlayer gamePlayer, int finger) {
+    MessageCli.PRINT_INFO_HAND.printMessage(gamePlayer.toString(), String.valueOf(finger));
   }
 
   /** When called, adds 1 to the round class variable. */
