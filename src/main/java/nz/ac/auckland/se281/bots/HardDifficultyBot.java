@@ -21,15 +21,43 @@ public class HardDifficultyBot extends AiPlayer {
   @Override
   public int getFinger() {
     Strategy strategy;
-
-    strategy = new RandomStrategy();
+    if (round <= 3) {
+      strategy = new RandomStrategy();
+    } else {
+      strategy = this.getNextStrategy();
+    }
+    this.setLastStrategy(strategy);
 
     StrategyProcessor strategyProcessor = new StrategyProcessor(strategy);
     return strategyProcessor.executeStrategy(choice, oddPlayed, evenPlayed);
   }
 
   /**
-   * Increments even played or odd played depending on the finger played and saves the finger played value
+   * Returns the current strategy based on whether the bot won that round, and the current strategy that round.
+   * 
+   * @return the strategy for the current round
+   */
+  private Strategy getNextStrategy() {
+    Strategy strategy;
+    if (winLastRound) { // Keep strategy the same
+      strategy = randomStrategyPlayed ? (new RandomStrategy()) : (new TopStrategy());
+    } else { // change strategy
+      strategy = randomStrategyPlayed ? (new TopStrategy()) : (new TopStrategy());
+    } 
+    
+    return strategy;
+  }
+
+  /**
+   * Updates the last strategy played on the last round.
+   */
+  private void setLastStrategy(Strategy strategy) {
+    this.randomStrategyPlayed = strategy instanceof RandomStrategy;
+  }
+  
+
+  /**
+   * Increments even played or odd played depending on the finger played and saves the finger played value.
    * 
    * @param userFingerPlayed the value of the finger the user played
    */
