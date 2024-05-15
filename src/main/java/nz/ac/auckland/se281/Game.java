@@ -1,7 +1,7 @@
 package nz.ac.auckland.se281;
 
-import nz.ac.auckland.se281.AIBots.AIBot;
-import nz.ac.auckland.se281.AIBots.BotFactory;
+import nz.ac.auckland.se281.AiBots.AiPlayer;
+import nz.ac.auckland.se281.AiBots.BotFactory;
 import nz.ac.auckland.se281.Main.Choice;
 import nz.ac.auckland.se281.Main.Difficulty;
 
@@ -9,7 +9,7 @@ import nz.ac.auckland.se281.Main.Difficulty;
 public class Game {
   private int round = 1;
   private UserPlayer player;
-  private AIBot bot;
+  private AiPlayer bot;
   private Choice choice;
 
   /**
@@ -70,10 +70,10 @@ public class Game {
   }
 
   /**
-   * Prints out the player's name and hand
+   * Prints out the player's name and hand.
    *
-   * @param gamePlayer
-   * @param finger
+   * @param gamePlayer the player that wants to be printed out
+   * @param finger the finger that the player put out in the previous round
    */
   public void printHand(GamePlayer gamePlayer, int finger) {
     MessageCli.PRINT_INFO_HAND.printMessage(gamePlayer.toString(), String.valueOf(finger));

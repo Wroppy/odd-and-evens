@@ -3,6 +3,11 @@ package nz.ac.auckland.se281.Strategies;
 import nz.ac.auckland.se281.Main.Choice;
 import nz.ac.auckland.se281.Utils;
 
+/**
+ * The top strategy chooses a random number if the number of odd and even played are equal. It there
+ * is an imbalance, the bot assumes the player will pick the heavier weighted side, and will pick to
+ * counter it
+ */
 public class TopStrategy implements Strategy {
 
   @Override
