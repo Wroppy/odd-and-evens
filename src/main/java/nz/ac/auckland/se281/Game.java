@@ -9,11 +9,12 @@ import nz.ac.auckland.se281.bots.HardDifficultyBot;
 /** This class represents the Game is the main entry point. */
 public class Game {
   private boolean gameStarted;
-  private int round = 1;
+  private int round;
   private UserPlayer player;
   private AiPlayer bot;
   private Choice choice;
-
+  private int playerRoundsWon;
+  private int botsRoundsWon;
 
   public Game() {
     this.gameStarted = false;
@@ -27,7 +28,9 @@ public class Game {
    * @param options String array containing the player name.
    */
   public void newGame(Difficulty difficulty, Choice choice, String[] options) {
+    this.round = 1;
     this.gameStarted = true;
+    this.playerRoundsWon = 0;
 
     // Welcomes the player to the game
     String playerName = options[0];
@@ -67,6 +70,9 @@ public class Game {
     MessageCli.PRINT_OUTCOME_ROUND.printMessage(
         String.valueOf(sum), sumDescription, winner.toString());
 
+    // Saves the winner in the game stats
+    this.saveRoundWinner(humanWin);
+
     this.incrementRound();
     this.bot.rememberFingerPlayed(finger);
 
@@ -89,6 +95,19 @@ public class Game {
       return Utils.isEven(sum);
     } else { // User chose odd
       return Utils.isOdd(sum);
+    }
+  }
+
+  /**
+   * Increments 1 to the amount that the player wins if the player won that round.
+   *
+   * @param humanWinRound whether the player won that round
+   */
+  public void saveRoundWinner(boolean humanWinRound) {
+    if (humanWinRound) {
+      this.playerRoundsWon++;
+    } else {
+      this.botsRoundsWon++;
     }
   }
 
@@ -117,5 +136,14 @@ public class Game {
       MessageCli.GAME_NOT_STARTED.printMessage();
       return;
     }
+    String botRoundWins = String.valueOf(this.botsRoundsWon);
+    String playerRoundsWon = String.valueOf(this.playerRoundsWon);
+
+    // Prints the stats
+    MessageCli.PRINT_PLAYER_WINS.printMessage(
+        this.player.toString(), playerRoundsWon, botRoundWins);
+    MessageCli.PRINT_PLAYER_WINS.printMessage(this.bot.toString(), botRoundWins, playerRoundsWon);
   }
+
+  public void incrementWinner() {}
 }
