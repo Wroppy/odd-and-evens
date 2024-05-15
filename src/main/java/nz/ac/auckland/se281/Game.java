@@ -1,9 +1,10 @@
 package nz.ac.auckland.se281;
 
-import nz.ac.auckland.se281.bots.AiPlayer;
-import nz.ac.auckland.se281.bots.BotFactory;
 import nz.ac.auckland.se281.Main.Choice;
 import nz.ac.auckland.se281.Main.Difficulty;
+import nz.ac.auckland.se281.bots.AiPlayer;
+import nz.ac.auckland.se281.bots.BotFactory;
+import nz.ac.auckland.se281.bots.HardDifficultyBot;
 
 /** This class represents the Game is the main entry point. */
 public class Game {
@@ -44,8 +45,9 @@ public class Game {
     int botFinger = this.bot.getFinger();
     this.printHand(this.bot, botFinger);
 
+    boolean humanWin = this.didHumanWinRound(finger, botFinger);
     // Prints out who won the round
-    GamePlayer winner = this.didHumanWinRound(finger, botFinger) ? this.player : this.bot;
+    GamePlayer winner = humanWin ? this.player : this.bot;
     int sum = finger + botFinger;
     String sumDescription = Utils.isEven(sum) ? "EVEN" : "ODD";
     MessageCli.PRINT_OUTCOME_ROUND.printMessage(
@@ -53,6 +55,11 @@ public class Game {
 
     this.incrementRound();
     this.bot.rememberFingerPlayed(finger);
+
+    // If the bot is hard, then pass in who won
+    if (this.bot instanceof HardDifficultyBot) {
+      ((HardDifficultyBot) this.bot).setBotWin(humanWin);
+    }
   }
 
   /**
