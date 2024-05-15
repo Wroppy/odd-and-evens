@@ -14,6 +14,7 @@ public class Game {
   private AiPlayer bot;
   private Choice choice;
 
+
   public Game() {
     this.gameStarted = false;
   }
@@ -110,5 +111,11 @@ public class Game {
 
   public void endGame() {}
 
-  public void showStats() {}
+  public void showStats() {
+    // Displays error message if show stats command is done when a game hasn't started
+    if (!this.gameStarted) {
+      MessageCli.GAME_NOT_STARTED.printMessage();
+      return;
+    }
+  }
 }
