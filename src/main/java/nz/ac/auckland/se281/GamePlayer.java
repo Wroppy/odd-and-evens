@@ -12,5 +12,5 @@ public abstract class GamePlayer {
   @Override
   public String toString() {
     return this.name;
-  } 
+  }
 }

@@ -25,7 +25,7 @@ public class Game {
     this.player = new UserPlayer(playerName);
     MessageCli.WELCOME_PLAYER.printMessage(this.player.toString());
     this.round = 1;
-    this.bot = BotFactory.createBot(difficulty);
+    this.bot = BotFactory.createBot(difficulty, this.choice);
     this.choice = choice;
   }
 
@@ -48,9 +48,11 @@ public class Game {
     GamePlayer winner = this.didHumanWinRound(finger, botFinger) ? this.player : this.bot;
     int sum = finger + botFinger;
     String sumDescription = Utils.isEven(sum) ? "EVEN" : "ODD";
-    MessageCli.PRINT_OUTCOME_ROUND.printMessage(String.valueOf(sum), sumDescription, winner.toString());
+    MessageCli.PRINT_OUTCOME_ROUND.printMessage(
+        String.valueOf(sum), sumDescription, winner.toString());
 
     this.incrementRound();
+    this.bot.rememberFingerPlayed(finger);
   }
 
   /**
@@ -80,6 +82,8 @@ public class Game {
   /** When called, adds 1 to the round class variable. */
   private void incrementRound() {
     this.round++;
+
+    this.bot.incrementRound();
   }
 
   public void endGame() {}
