@@ -8,10 +8,15 @@ import nz.ac.auckland.se281.bots.HardDifficultyBot;
 
 /** This class represents the Game is the main entry point. */
 public class Game {
+  private boolean gameStarted;
   private int round = 1;
   private UserPlayer player;
   private AiPlayer bot;
   private Choice choice;
+
+  public Game() {
+    this.gameStarted = false;
+  }
 
   /**
    * Given the difficulty, odd or even, and the players name, resets and starts a new game.
@@ -21,6 +26,8 @@ public class Game {
    * @param options String array containing the player name.
    */
   public void newGame(Difficulty difficulty, Choice choice, String[] options) {
+    this.gameStarted = true;
+
     // Welcomes the player to the game
     String playerName = options[0];
     this.player = new UserPlayer(playerName);
@@ -35,6 +42,12 @@ public class Game {
    * numeric input.
    */
   public void play() {
+    // Checks if the user has already played
+    if (!this.gameStarted) { // Game has not started
+      MessageCli.GAME_NOT_STARTED.printMessage();
+      return;
+    }
+
     MessageCli.START_ROUND.printMessage(String.valueOf(this.round));
 
     // Gets the user players finger and prints the hand
@@ -65,6 +78,8 @@ public class Game {
   /**
    * Returns true or false on whether the human player won the round.
    *
+   * @param playerFinger the finger that the human player put out
+   * @param botFinger the finger that the bot put out
    * @return whether the human won the round
    */
   public boolean didHumanWinRound(int playerFinger, int botFinger) {
