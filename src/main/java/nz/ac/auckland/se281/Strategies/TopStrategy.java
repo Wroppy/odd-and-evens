@@ -14,16 +14,18 @@ public class TopStrategy implements Strategy {
 
     // Checks what the play has played the most
     if (evenPlayed > oddPlayed) {
-      if (userChoice == Choice.EVEN) {
-        return Utils.getRandomOddNumber();
-      } else {
-        return Utils.getRandomEvenNumber();
+      switch (userChoice) {
+        case EVEN: // The user needs EVEN to win, so the bot chooses odd
+          return Utils.getRandomOddNumber();
+        default:
+          return Utils.getRandomEvenNumber();
       }
-    } else {
-      if (userChoice == Choice.EVEN) {
-        return Utils.getRandomEvenNumber();
-      } else {
-        return Utils.getRandomOddNumber();
+    } else { // Odd played more than even
+      switch (userChoice) {
+        case EVEN: // Needs an even number to win
+          return Utils.getRandomEvenNumber();
+        default:
+          return Utils.getRandomOddNumber();
       }
     }
   }

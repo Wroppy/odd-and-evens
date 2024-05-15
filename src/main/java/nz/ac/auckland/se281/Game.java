@@ -25,8 +25,8 @@ public class Game {
     this.player = new UserPlayer(playerName);
     MessageCli.WELCOME_PLAYER.printMessage(this.player.toString());
     this.round = 1;
-    this.bot = BotFactory.createBot(difficulty, this.choice);
     this.choice = choice;
+    this.bot = BotFactory.createBot(difficulty, this.choice);
   }
 
   /**
