@@ -6,7 +6,7 @@ import nz.ac.auckland.se281.Main.Difficulty;
 /** This class represents the Game is the main entry point. */
 public class Game {
   private int round = 1;
-  private String playerName;
+  private UserPlayer player;
 
   /**
    * Given the difficulty, odd or even, and the players name, resets and starts a new game.
@@ -18,8 +18,8 @@ public class Game {
   public void newGame(Difficulty difficulty, Choice choice, String[] options) {
     // Welcomes the player to the game
     String playerName = options[0];
-    MessageCli.WELCOME_PLAYER.printMessage(playerName);
-    this.playerName = playerName;
+    this.player = new UserPlayer(playerName);
+    MessageCli.WELCOME_PLAYER.printMessage(this.player.toString());
     this.round = 1;
   }
 
@@ -31,7 +31,7 @@ public class Game {
     MessageCli.START_ROUND.printMessage(String.valueOf(this.round));
 
     int finger = this.getFinger();
-    MessageCli.PRINT_INFO_HAND.printMessage(this.playerName, String.valueOf(finger));
+    MessageCli.PRINT_INFO_HAND.printMessage(this.player.toString(), String.valueOf(finger));
 
     this.incrementRound();
   }
@@ -57,7 +57,7 @@ public class Game {
     return Integer.parseInt(finger);
   }
 
-  /** When called, adds 1 to the round class variable */
+  /** When called, adds 1 to the round class variable. */
   private void incrementRound() {
     this.round++;
   }
