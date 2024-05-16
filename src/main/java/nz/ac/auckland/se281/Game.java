@@ -31,6 +31,7 @@ public class Game {
     this.round = 1;
     this.gameStarted = true;
     this.playerRoundsWon = 0;
+    this.botsRoundsWon = 0;
 
     // Welcomes the player to the game
     String playerName = options[0];
@@ -128,7 +129,25 @@ public class Game {
     this.bot.incrementRound();
   }
 
-  public void endGame() {}
+  public void endGame() {
+    this.showStats();
+
+    // Prints the winner of the match
+
+    this.printWinner();
+  }
+
+  /**
+   * Given the amount of rounds won and lost by both players, prints out who won, or whether the
+   * game ended in a tie.
+   */
+  public void printWinner() {
+    // Handles trie games
+    if (this.botsRoundsWon == this.playerRoundsWon) {
+      MessageCli.PRINT_END_GAME_TIE.printMessage();
+      return;
+    }
+  }
 
   public void showStats() {
     // Displays error message if show stats command is done when a game hasn't started
