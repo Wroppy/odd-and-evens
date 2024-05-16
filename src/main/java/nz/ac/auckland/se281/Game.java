@@ -152,6 +152,12 @@ public class Game {
     String winner = (playerRoundsWon > botsRoundsWon) ? player.toString() : bot.toString(); 
 
     MessageCli.PRINT_END_GAME.printMessage(winner);
+
+    // Resets the stats
+    this.playerRoundsWon = 0;
+    this.round = 1;
+    this.botsRoundsWon = 0;
+    this.gameStarted = false;
   }
 
   public void showStats() {
