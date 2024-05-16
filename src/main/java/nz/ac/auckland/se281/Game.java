@@ -142,11 +142,16 @@ public class Game {
    * game ended in a tie.
    */
   public void printWinner() {
-    // Handles trie games
+    // Handles tied games
     if (this.botsRoundsWon == this.playerRoundsWon) {
       MessageCli.PRINT_END_GAME_TIE.printMessage();
       return;
     }
+    
+    // Handles printing out the actual winner
+    String winner = (playerRoundsWon > botsRoundsWon) ? player.toString() : bot.toString(); 
+
+    MessageCli.PRINT_END_GAME.printMessage(winner);
   }
 
   public void showStats() {
