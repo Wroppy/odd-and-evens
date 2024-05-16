@@ -1,7 +1,6 @@
 package nz.ac.auckland.se281;
-/**
- * Handles the logic the user playing the game.
- */
+
+/** Handles the logic the user playing the game. */
 public class UserPlayer extends GamePlayer {
   public UserPlayer(String name) {
     super(name);

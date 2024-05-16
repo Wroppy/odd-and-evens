@@ -21,20 +21,22 @@ public class HardDifficultyBot extends AiPlayer {
   @Override
   public int getFinger() {
     Strategy strategy;
-    if (round <= 3) {
+    
+    if (round <= 3) { // If the round is less than 3, uses the random strategy
       strategy = new RandomStrategy();
-    } else {
+    } else { // Switches strategy based on current strategy and round win/loss
       strategy = this.getNextStrategy();
     }
-    this.setLastStrategy(strategy);
 
+    this.setLastStrategy(strategy);
     StrategyProcessor strategyProcessor = new StrategyProcessor(strategy);
     return strategyProcessor.executeStrategy(choice, oddPlayed, evenPlayed);
   }
 
   /**
-   * Returns the current strategy based on whether the bot won that round, and the current strategy that round.
-   * 
+   * Returns the current strategy based on whether the bot won that round, and the current 
+   * strategy that round.
+   *
    * @return the strategy for the current round
    */
   private Strategy getNextStrategy() {
@@ -43,22 +45,20 @@ public class HardDifficultyBot extends AiPlayer {
       strategy = randomStrategyPlayed ? (new RandomStrategy()) : (new TopStrategy());
     } else { // change strategy
       strategy = randomStrategyPlayed ? (new TopStrategy()) : (new TopStrategy());
-    } 
-    
+    }
+
     return strategy;
   }
 
-  /**
-   * Updates the last strategy played on the last round.
-   */
+  /** Updates the last strategy played on the last round. */
   private void setLastStrategy(Strategy strategy) {
     this.randomStrategyPlayed = strategy instanceof RandomStrategy;
   }
-  
 
   /**
-   * Increments even played or odd played depending on the finger played and saves the finger played value.
-   * 
+   * Increments even played or odd played depending on the finger played and saves the finger 
+   * played value.
+   *
    * @param userFingerPlayed the value of the finger the user played
    */
   @Override
@@ -67,8 +67,8 @@ public class HardDifficultyBot extends AiPlayer {
   }
 
   /**
-   * Given the human win, sets whether the bot won the last round 
-   * 
+   * Given the human win, sets whether the bot won the last round.
+   *
    * @param humanWin whether the human won last round
    */
   public void setBotWin(boolean humanWin) {

@@ -16,7 +16,7 @@ public class MediumDifficultyBot extends AiPlayer {
     super(choice);
   }
 
-  /** Does the random strategy for the first 3 rounds then switches to the top strategy */
+  /** Does the random strategy for the first 3 rounds then switches to the top strategy. */
   @Override
   public int getFinger() {
     Strategy strategy;

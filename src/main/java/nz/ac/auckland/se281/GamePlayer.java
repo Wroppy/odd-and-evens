@@ -1,7 +1,7 @@
 package nz.ac.auckland.se281;
 
 /**
- * A generic class for a player that plays and interacts with the game
+ * A generic class for a player that plays and interacts with the game.
  */
 public abstract class GamePlayer {
   protected String name;

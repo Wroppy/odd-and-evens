@@ -129,6 +129,10 @@ public class Game {
     this.bot.incrementRound();
   }
 
+  /**
+   * Is called when the user invokes the end-game command. Will show the stats then show the winner
+   * of the game, and a tie if it is a tie.
+   */
   public void endGame() {
     this.showStats();
 
@@ -147,9 +151,9 @@ public class Game {
       MessageCli.PRINT_END_GAME_TIE.printMessage();
       return;
     }
-    
+
     // Handles printing out the actual winner
-    String winner = (playerRoundsWon > botsRoundsWon) ? player.toString() : bot.toString(); 
+    String winner = (playerRoundsWon > botsRoundsWon) ? player.toString() : bot.toString();
 
     MessageCli.PRINT_END_GAME.printMessage(winner);
 
@@ -160,6 +164,10 @@ public class Game {
     this.gameStarted = false;
   }
 
+  /**
+   * Shows the amount of round wins from the user player and the bot in the current game.
+   * Will print an error if a game has not started yet.
+   */
   public void showStats() {
     // Displays error message if show stats command is done when a game hasn't started
     if (!this.gameStarted) {
