@@ -139,12 +139,11 @@ public class Game {
       MessageCli.GAME_NOT_STARTED.printMessage();
       return;
     }
-  
+
     this.showStats();
 
-
     this.printWinner();
-    
+
     // Resets the stats
     this.playerRoundsWon = 0;
     this.round = 1;

@@ -8,7 +8,7 @@ public class StrategyProcessor {
 
   /**
    * Sets the strategy to be executed.
-   * 
+   *
    * @param strategy the strategy to be executed
    */
   public void setStrategy(Strategy strategy) {
