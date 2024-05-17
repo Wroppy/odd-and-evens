@@ -3,7 +3,7 @@ package nz.ac.auckland.se281.strategies;
 import nz.ac.auckland.se281.Main.Choice;
 
 /**
- * Executes the given strategy
+ * Executes the given strategy.
  */
 public class StrategyProcessor {
   private Strategy strategy;

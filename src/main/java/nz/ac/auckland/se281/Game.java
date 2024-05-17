@@ -137,6 +137,9 @@ public class Game {
     this.showStats();
 
     // Prints the winner of the match
+    if (!gameStarted) {
+      return;
+    }
 
     this.printWinner();
   }
@@ -165,8 +168,8 @@ public class Game {
   }
 
   /**
-   * Shows the amount of round wins from the user player and the bot in the current game.
-   * Will print an error if a game has not started yet.
+   * Shows the amount of round wins from the user player and the bot in the current game. Will print
+   * an error if a game has not started yet.
    */
   public void showStats() {
     // Displays error message if show stats command is done when a game hasn't started
