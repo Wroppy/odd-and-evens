@@ -134,14 +134,22 @@ public class Game {
    * of the game, and a tie if it is a tie.
    */
   public void endGame() {
-    this.showStats();
-
     // Prints the winner of the match
     if (!gameStarted) {
+      MessageCli.GAME_NOT_STARTED.printMessage();
       return;
     }
+  
+    this.showStats();
+
 
     this.printWinner();
+    
+    // Resets the stats
+    this.playerRoundsWon = 0;
+    this.round = 1;
+    this.botsRoundsWon = 0;
+    this.gameStarted = false;
   }
 
   /**
@@ -159,12 +167,6 @@ public class Game {
     String winner = (playerRoundsWon > botsRoundsWon) ? player.toString() : bot.toString();
 
     MessageCli.PRINT_END_GAME.printMessage(winner);
-
-    // Resets the stats
-    this.playerRoundsWon = 0;
-    this.round = 1;
-    this.botsRoundsWon = 0;
-    this.gameStarted = false;
   }
 
   /**
