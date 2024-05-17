@@ -29,7 +29,8 @@ public class HardDifficultyBot extends AiPlayer {
     }
 
     this.setLastStrategy(strategy);
-    StrategyProcessor strategyProcessor = new StrategyProcessor(strategy);
+    StrategyProcessor strategyProcessor = new StrategyProcessor();
+    strategyProcessor.setStrategy(strategy);
     return strategyProcessor.executeStrategy(choice, oddPlayed, evenPlayed);
   }
 

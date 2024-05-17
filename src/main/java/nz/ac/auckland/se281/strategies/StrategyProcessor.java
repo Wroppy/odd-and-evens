@@ -2,13 +2,16 @@ package nz.ac.auckland.se281.strategies;
 
 import nz.ac.auckland.se281.Main.Choice;
 
-/**
- * Executes the given strategy.
- */
+/** Executes the given strategy. */
 public class StrategyProcessor {
   private Strategy strategy;
 
-  public StrategyProcessor(Strategy strategy) {
+  /**
+   * Sets the strategy to be executed.
+   * 
+   * @param strategy the strategy to be executed
+   */
+  public void setStrategy(Strategy strategy) {
     this.strategy = strategy;
   }
 

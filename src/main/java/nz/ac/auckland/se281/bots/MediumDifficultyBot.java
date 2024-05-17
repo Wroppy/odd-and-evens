@@ -27,7 +27,8 @@ public class MediumDifficultyBot extends AiPlayer {
       strategy = new TopStrategy();
     }
 
-    StrategyProcessor processor = new StrategyProcessor(strategy);
+    StrategyProcessor processor = new StrategyProcessor();
+    processor.setStrategy(strategy);
     return processor.executeStrategy(choice, oddPlayed, evenPlayed);
   }
 }

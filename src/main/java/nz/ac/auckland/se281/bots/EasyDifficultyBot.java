@@ -16,7 +16,8 @@ public class EasyDifficultyBot extends AiPlayer {
   @Override
   public int getFinger() {
     RandomStrategy randomStrategy = new RandomStrategy();
-    StrategyProcessor processor = new StrategyProcessor(randomStrategy);
+    StrategyProcessor processor = new StrategyProcessor();
+    processor.setStrategy(randomStrategy);
     return processor.executeStrategy(this.choice, this.oddPlayed, this.evenPlayed);
   }
 }
